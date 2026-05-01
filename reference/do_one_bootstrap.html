@@ -67,8 +67,12 @@
 <dd><p>(numeric) bootstrap number.</p></dd>
 
 
+<dt id="arg-gapdata">gapdata<a class="anchor" aria-label="anchor" href="#arg-gapdata"></a></dt>
+<dd><p>gapdata object created from gapindex::get_data(). This can have multiple years of data, but should be one species and one region only.</p></dd>
+
+
 <dt id="arg-gapcpue">gapcpue<a class="anchor" aria-label="anchor" href="#arg-gapcpue"></a></dt>
-<dd><p>object created from gapindex::calc_cpue(). This can have multiple years of data, but should be one species and one region only.</p></dd>
+<dd><p>object created from gapindex::calc_cpue(). It should be created from the gapdata object.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -101,13 +105,11 @@ This function returns one single resample of a CPUE table. Usually, you would be
 <span class="r-in"><span><span class="va">x2</span> <span class="op">&lt;-</span> <span class="fu">do_one_bootstrap</span><span class="op">(</span>boot <span class="op">=</span> <span class="fl">2</span>, gapdata <span class="op">=</span> <span class="va">testdata</span>, gapcpue <span class="op">=</span> <span class="va">testcpue</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'testcpue' not found</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in library(ggplot2):</span> there is no package called ‘ggplot2’</span>
-<span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">testcpue</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">YEAR</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">CPUE_KGKM2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">geom_jitter</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.05</span>, height <span class="op">=</span> <span class="fl">0.00001</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">geom_jitter</span><span class="op">(</span>data <span class="op">=</span> <span class="va">x1</span><span class="op">$</span><span class="va">cpue</span>, width <span class="op">=</span> <span class="fl">0.05</span>, color <span class="op">=</span> <span class="st">"blue"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> <span class="op">+</span></span></span>
-<span class="r-in"><span>  <span class="fu">geom_jitter</span><span class="op">(</span>data <span class="op">=</span> <span class="va">x2</span><span class="op">$</span><span class="va">cpue</span>, width <span class="op">=</span> <span class="fl">0.05</span>, color <span class="op">=</span> <span class="st">"red"</span>, alpha <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ggplot(testcpue, aes(x = factor(YEAR), y = CPUE_KGKM2)):</span> could not find function "ggplot"</span>
+<span class="r-in"><span><span class="co">#library(ggplot2)</span></span></span>
+<span class="r-in"><span><span class="co">#ggplot(testcpue, aes(x = factor(YEAR), y = CPUE_KGKM2)) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_jitter(width = 0.05, height = 0.00001) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_jitter(data = x1$cpue, width = 0.05, color = "blue", alpha = 0.2) +</span></span></span>
+<span class="r-in"><span><span class="co">#   geom_jitter(data = x2$cpue, width = 0.05, color = "red", alpha = 0.2)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

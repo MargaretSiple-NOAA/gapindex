@@ -14,10 +14,15 @@ do_one_bootstrap(boot, gapdata = NULL, gapcpue = NULL)
 
   (numeric) bootstrap number.
 
+- gapdata:
+
+  gapdata object created from gapindex::get_data(). This can have
+  multiple years of data, but should be one species and one region only.
+
 - gapcpue:
 
-  object created from gapindex::calc_cpue(). This can have multiple
-  years of data, but should be one species and one region only.
+  object created from gapindex::calc_cpue(). It should be created from
+  the gapdata object.
 
 ## Value
 
@@ -53,11 +58,9 @@ x1 <- do_one_bootstrap(boot = 1, gapdata = testdata, gapcpue = testcpue)
 x2 <- do_one_bootstrap(boot = 2, gapdata = testdata, gapcpue = testcpue)
 #> Error: object 'testcpue' not found
 
-library(ggplot2)
-#> Error in library(ggplot2): there is no package called ‘ggplot2’
-ggplot(testcpue, aes(x = factor(YEAR), y = CPUE_KGKM2)) +
-  geom_jitter(width = 0.05, height = 0.00001) +
-  geom_jitter(data = x1$cpue, width = 0.05, color = "blue", alpha = 0.2) +
-  geom_jitter(data = x2$cpue, width = 0.05, color = "red", alpha = 0.2)
-#> Error in ggplot(testcpue, aes(x = factor(YEAR), y = CPUE_KGKM2)): could not find function "ggplot"
+#library(ggplot2)
+#ggplot(testcpue, aes(x = factor(YEAR), y = CPUE_KGKM2)) +
+#   geom_jitter(width = 0.05, height = 0.00001) +
+#   geom_jitter(data = x1$cpue, width = 0.05, color = "blue", alpha = 0.2) +
+#   geom_jitter(data = x2$cpue, width = 0.05, color = "red", alpha = 0.2)
 ```
